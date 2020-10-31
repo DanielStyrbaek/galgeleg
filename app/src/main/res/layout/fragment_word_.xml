@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Word_Frag">
+    tools:context=".observers.Word_Frag">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:id="@+id/word_display"
         android:text="____________">
     </TextView>
 

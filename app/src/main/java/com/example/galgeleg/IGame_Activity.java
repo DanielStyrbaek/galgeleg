@@ -2,6 +2,8 @@ package com.example.galgeleg;
 
 public interface IGame_Activity {
 
+    String getVisibleText();
+
     void inflateFragment(String fragmentTag);
 
     void gameOver(boolean state);
