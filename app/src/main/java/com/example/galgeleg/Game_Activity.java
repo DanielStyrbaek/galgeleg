@@ -1,35 +1,29 @@
 package com.example.galgeleg;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-public class Game_Activity extends AppCompatActivity implements IGame_Activity {
+import com.example.galgeleg.factories.FragmentFactory;
+import com.example.galgeleg.observers.IObservable;
+
+public class Game_Activity extends AppCompatActivity implements IGame_Activity, IObservable {
 
     FragmentFactory factory;
+    Game_Logic logic;
+    //char[] alphabet = {'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'Å', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Æ', 'Ø', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_);
-        FragmentFactory factory = new FragmentFactory();
 
+        init();
+        logic.start_new_game();
 
-        Display_Frag fragment = new Display_Frag();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.display, fragment)  // tom container i layout
-                .commit();
-
-        Word_Frag fragment2 = new Word_Frag();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.wordDisplay, fragment2)  // tom container i layout
-                .commit();
-
-        Alphabet_Frag fragment3 = new Alphabet_Frag();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.alphabet_display, fragment3)  // tom container i layout
-                .commit();
 
     }
 
@@ -39,5 +33,32 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void gameOver(boolean state) {
+
+    }
+
+    private void init() {
+        factory = new FragmentFactory();
+        logic = new Game_Logic(this);
+
+        //ADD OBSERVERS
+
+
+        Fragment fragment = factory.createWordFrag("display");
+        Fragment fragment2 = factory.createWordFrag("word");
+        Fragment fragment3 = factory.createWordFrag("alphabet");
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.display, fragment)
+                .add(R.id.wordDisplay, fragment2)
+                .add(R.id.alphabet_display, fragment3)
+                .commit();
+    }
+
+    public void guess (String letter) {
+        System.out.println("test" + letter);
+        this.logic.guess_letter(letter);
     }
 }

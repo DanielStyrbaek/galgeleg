@@ -1,6 +1,10 @@
-package com.example.galgeleg;
+package com.example.galgeleg.factories;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.galgeleg.Alphabet_Frag;
+import com.example.galgeleg.Display_Frag;
+import com.example.galgeleg.Word_Frag;
 
 public class FragmentFactory {
 

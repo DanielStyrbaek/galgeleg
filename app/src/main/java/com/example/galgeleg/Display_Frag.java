@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.galgeleg.observers.IObserver;
 
-public class Display_Frag extends Fragment implements IObserver  {
+
+public class Display_Frag extends Fragment implements IObserver {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

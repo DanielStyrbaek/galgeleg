@@ -2,12 +2,11 @@ package com.example.galgeleg.state;
 
 import com.example.galgeleg.Game_Logic;
 
-public class state_game_won implements IGameState
-{
+public class state_initial implements IGameState {
 
     Game_Logic game;
 
-    public state_game_won(Game_Logic game_logic) {
+    public state_initial(Game_Logic game_logic) {
         this.game = game_logic;
     }
 
@@ -18,11 +17,15 @@ public class state_game_won implements IGameState
 
     @Override
     public void start_new_game() {
+        this.game.setWord("Hangmantest");
+        this.game.update_visible_word();
+        this.game.change_state(new state_game_running(this.game));
 
     }
 
     @Override
     public void update_visible_word() {
+        this.game.setVisibleWord("");
 
     }
 
