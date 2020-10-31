@@ -44,7 +44,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
 
     @Override
     public void gameOver(boolean state) {
-        
+
     }
 
     private void init() {
