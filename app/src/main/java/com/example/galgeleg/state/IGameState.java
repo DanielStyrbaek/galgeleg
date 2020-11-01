@@ -1,7 +1,7 @@
 package com.example.galgeleg.state;
 
 public interface IGameState {
-    void handle();
+    void handleEndGame();
 
     void start_new_game();
 

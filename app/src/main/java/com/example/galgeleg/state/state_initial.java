@@ -15,7 +15,7 @@ public class state_initial implements IGameState {
     }
 
     @Override
-    public void handle() {
+    public void handleEndGame() {
 
     }
 

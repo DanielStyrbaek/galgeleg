@@ -41,8 +41,8 @@ public class Game_Logic {
         }
     }
 
-    public void handle() {
-        this.state.handle();
+    public void handleEndGame() {
+        this.state.handleEndGame();
     }
 
     public void start_new_game() {

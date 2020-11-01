@@ -10,6 +10,8 @@ import android.os.Bundle;
 import com.example.galgeleg.factories.FragmentFactory;
 import com.example.galgeleg.observers.IObservable;
 import com.example.galgeleg.observers.IObserver;
+import com.example.galgeleg.popup.Dialog_lost;
+import com.example.galgeleg.popup.Dialog_won;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +48,11 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     @Override
     public void gameOver(boolean state) {
         if(state) {
-            System.out.println("Game won");
+            Dialog_won dialog = new Dialog_won();
+            dialog.show(getSupportFragmentManager(), "Dialog_won");
         } else {
-            System.out.println("Game lost");
+            Dialog_lost dialog = new Dialog_lost();
+            dialog.show(getSupportFragmentManager(), "Dialog_won");
         }
 
     }
@@ -79,6 +83,22 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
         System.out.println("test" + letter);
         this.logic.guess_letter(letter);
         Notify();
+    }
+
+    @Override
+    public void startGame() {
+
+    }
+
+    @Override
+    public void handleGameOver() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public String getWord() {
+        return this.logic.getWord();
     }
 
     @Override

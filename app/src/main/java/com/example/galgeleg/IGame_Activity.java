@@ -10,5 +10,10 @@ public interface IGame_Activity {
 
     void guess(String letter);
 
+    void startGame();
 
+    void handleGameOver();
+
+
+    String getWord();
 }

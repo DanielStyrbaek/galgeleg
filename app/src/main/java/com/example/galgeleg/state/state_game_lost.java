@@ -10,7 +10,7 @@ public class state_game_lost implements IGameState{
     }
 
     @Override
-    public void handle() {
+    public void handleEndGame() {
 
     }
 
