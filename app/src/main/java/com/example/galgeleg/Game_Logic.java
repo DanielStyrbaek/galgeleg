@@ -14,7 +14,7 @@ public class Game_Logic {
     String visibleWord = " ";
     IGame_Activity activity;
     String correctLetters = " ";
-    int nrOfTries = 7;
+    int nrOfTries = 6;
 
 
 

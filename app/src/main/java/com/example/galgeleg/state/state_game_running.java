@@ -45,8 +45,9 @@ public class state_game_running implements IGameState {
     @Override
     public void guess_letter(String letter) {
         String correctLetters = this.game.getCorrectLetters();
+        String word = this.game.getWord();
 
-        if(this.game.getWord().contains(letter)) {
+        if(word.contains(letter)) {
             correctLetters += letter;
             this.game.setCorrectLetters(correctLetters);
             this.game.update_visible_word();

@@ -9,4 +9,6 @@ public interface IGame_Activity {
     void gameOver(boolean state);
 
     void guess(String letter);
+
+
 }

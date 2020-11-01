@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.galgeleg.factories.FragmentFactory;
@@ -44,6 +45,11 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
 
     @Override
     public void gameOver(boolean state) {
+        if(state) {
+            System.out.println("Game won");
+        } else {
+            System.out.println("Game lost");
+        }
 
     }
 
@@ -68,6 +74,11 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
         System.out.println("test" + letter);
         this.logic.guess_letter(letter);
         Notify();
+    }
+
+    @Override
+    public int getNumberOfTries() {
+        return this.logic.getNrOfTries();
     }
 
     @Override

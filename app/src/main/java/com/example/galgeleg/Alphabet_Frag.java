@@ -37,7 +37,8 @@ public class Alphabet_Frag extends Fragment {
             grid.addView(btn);
             btn.setOnClickListener(v -> {
                 btn.setEnabled(false);
-                game_activity.guess((String) btn.getText());
+
+                game_activity.guess((String) btn.getText().toString().toLowerCase());
             });
 
         }

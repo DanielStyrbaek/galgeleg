@@ -17,7 +17,7 @@ public class state_initial implements IGameState {
 
     @Override
     public void start_new_game() {
-        this.game.setWord("Hangmantest");
+        this.game.setWord("test");
         this.game.update_visible_word();
         this.game.change_state(new state_game_running(this.game));
 
