@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.example.galgeleg.factories.FragmentFactory;
 import com.example.galgeleg.observers.IObservable;
@@ -31,6 +33,8 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
         setContentView(R.layout.activity_game_);
 
         init();
+
+
 
 
     }
