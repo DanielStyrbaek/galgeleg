@@ -22,7 +22,11 @@ public class state_initial implements IGameState {
     @Override
     public void start_new_game() {
         WordDB wordDB = this.game.getWordDB();
-        wordDB.standartOrd();
+        try {
+            wordDB.standartOrd();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ArrayList<String> words = wordDB.getWordDB();
 
 

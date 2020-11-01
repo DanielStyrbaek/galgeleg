@@ -49,9 +49,11 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     public void gameOver(boolean state) {
         if(state) {
             Dialog_won dialog = new Dialog_won();
+            dialog.setCancelable(false);
             dialog.show(getSupportFragmentManager(), "Dialog_won");
         } else {
             Dialog_lost dialog = new Dialog_lost();
+            dialog.setCancelable(false);
             dialog.show(getSupportFragmentManager(), "Dialog_won");
         }
 
@@ -82,11 +84,18 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     public void guess (String letter) {
         System.out.println("test" + letter);
         this.logic.guess_letter(letter);
+
         Notify();
     }
 
     @Override
     public void startGame() {
+        this.logic.start_new_game();
+        Fragment fragment3 = factory.createWordFrag("alphabet");
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.alphabet_display, fragment3)
+                .commit();
+        Notify();
 
     }
 
