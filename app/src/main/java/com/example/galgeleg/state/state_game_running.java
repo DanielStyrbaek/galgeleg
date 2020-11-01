@@ -26,6 +26,7 @@ public class state_game_running implements IGameState {
         String visibleWord = "";
         String correctLetters = this.game.getCorrectLetters();
 
+
         for(char c: this.game.getWord().toCharArray()) {
             if (correctLetters.indexOf(c) != -1) {
                 visibleWord += c;
@@ -33,11 +34,11 @@ public class state_game_running implements IGameState {
                 visibleWord += "_";
             }
         }
-        System.out.println("test");
+        System.out.println("visible word" + visibleWord);
+
         this.game.setVisibleWord(visibleWord);
 
         if(!(visibleWord.contains("_"))) {
-            System.out.println("is this really it");
             this.game.change_state(new state_game_won(this.game));
         }
     }

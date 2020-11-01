@@ -18,6 +18,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
 
     FragmentFactory factory;
     Game_Logic logic;
+    WordDB wordDB;
     List<IObserver> observers = new ArrayList<IObserver>();
     //char[] alphabet = {'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'Å', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Æ', 'Ø', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'};
 
@@ -28,7 +29,6 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
         setContentView(R.layout.activity_game_);
 
         init();
-        logic.start_new_game();
 
 
     }
@@ -55,7 +55,10 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
 
     private void init() {
         factory = new FragmentFactory();
-        logic = new Game_Logic(this);
+        wordDB = new WordDB();
+        logic = new Game_Logic(this, wordDB);
+        logic.start_new_game();
+
 
         //ADD OBSERVERS
 
@@ -68,6 +71,8 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
                 .add(R.id.wordDisplay, fragment2)
                 .add(R.id.alphabet_display, fragment3)
                 .commit();
+
+
     }
 
     public void guess (String letter) {

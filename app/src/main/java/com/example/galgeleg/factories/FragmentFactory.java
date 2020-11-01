@@ -3,6 +3,8 @@ package com.example.galgeleg.factories;
 import androidx.fragment.app.Fragment;
 
 import com.example.galgeleg.Alphabet_Frag;
+import com.example.galgeleg.Dialog_lost;
+import com.example.galgeleg.Dialog_won;
 import com.example.galgeleg.observers.Display_Frag;
 import com.example.galgeleg.observers.Word_Frag;
 
@@ -37,6 +39,10 @@ public class FragmentFactory {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args); */
             return fragment;
+        } else if (type == "won") {
+            Dialog_won fragment = new Dialog_won();
+        } else if (type == "lost") {
+            Dialog_lost fragment = new Dialog_lost();
         }
 
 

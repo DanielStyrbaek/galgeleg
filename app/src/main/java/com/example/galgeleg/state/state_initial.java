@@ -1,6 +1,10 @@
 package com.example.galgeleg.state;
 
 import com.example.galgeleg.Game_Logic;
+import com.example.galgeleg.WordDB;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class state_initial implements IGameState {
 
@@ -17,7 +21,16 @@ public class state_initial implements IGameState {
 
     @Override
     public void start_new_game() {
-        this.game.setWord("test");
+        WordDB wordDB = this.game.getWordDB();
+        wordDB.standartOrd();
+        ArrayList<String> words = wordDB.getWordDB();
+
+
+        if(words.isEmpty()) {
+            throw new  IllegalStateException("List is empty");
+        }
+        this.game.setWord(words.get(new Random().nextInt(words.size())));
+        System.out.println("this is the word" + this.game.getWord());
         this.game.update_visible_word();
         this.game.change_state(new state_game_running(this.game));
 
@@ -25,7 +38,16 @@ public class state_initial implements IGameState {
 
     @Override
     public void update_visible_word() {
-        this.game.setVisibleWord("");
+        String visibleword = "";
+        String word = this.game.getWord();
+        System.out.println("this is the word 2" + this.game.getWord());
+
+
+        for (int i = 0; i < word.length(); i++) {
+            visibleword += "_";
+        }
+
+        this.game.setVisibleWord(visibleword);
 
     }
 

@@ -15,6 +15,7 @@ public class Game_Logic {
     IGame_Activity activity;
     String correctLetters = " ";
     int nrOfTries = 6;
+    WordDB wordDB;
 
 
 
@@ -22,9 +23,10 @@ public class Game_Logic {
 
 
 
-    public Game_Logic(IGame_Activity activity) {
+    public Game_Logic(IGame_Activity activity, WordDB wordDB) {
         this.state = new state_initial(this);
         this.activity = activity;
+        this.wordDB = wordDB;
     }
 
     public void change_state(IGameState state) {
@@ -54,10 +56,12 @@ public class Game_Logic {
 
     public void guess_letter(String letter) {
         this.state.guess_letter(letter);
-
     }
 
 
+    public WordDB getWordDB() {
+        return wordDB;
+    }
 
     public void setWord(String word) {
         this.word = word;

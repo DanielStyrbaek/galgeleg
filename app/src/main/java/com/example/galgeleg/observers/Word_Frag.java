@@ -31,6 +31,7 @@ public class Word_Frag extends Fragment implements IObserver{
 
         textView = root.findViewById(R.id.word_display);
         observe_game.add(this);
+        textView.setText(game_activity.getVisibleText());
         return root;
     }
 
