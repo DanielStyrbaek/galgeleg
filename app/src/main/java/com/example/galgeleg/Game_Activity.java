@@ -1,6 +1,7 @@
 package com.example.galgeleg;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -24,7 +25,6 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     FragmentFactory factory;
     Game_Logic logic;
     WordDB wordDB;
-    MemoryManage memory;
     List<IObserver> observers = new ArrayList<IObserver>();
 
 
@@ -44,7 +44,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
 
     @Override
     public void inflateFragment(String fragmentTag) {
-        factory.createWordFrag(fragmentTag);
+        factory.createFragment(fragmentTag);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.addToBackStack(null);
         transaction.commit();
@@ -53,13 +53,11 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     @Override
     public void gameOver(boolean state, int score) {
         if(state) {
-            Dialog_won dialog = new Dialog_won();
-            dialog.setCancelable(false);
+            DialogFragment dialog = factory.createDialog("won", score);
             dialog.show(getSupportFragmentManager(), "Dialog_won");
         } else {
-            Dialog_lost dialog = new Dialog_lost();
-            dialog.setCancelable(false);
-            dialog.show(getSupportFragmentManager(), "Dialog_won");
+            DialogFragment dialog = factory.createDialog("lost", score);
+            dialog.show(getSupportFragmentManager(), "Dialog_lost");
         }
 
     }
@@ -75,9 +73,9 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
         //ADD OBSERVERS
 
 
-        Fragment fragment = factory.createWordFrag("display");
-        Fragment fragment2 = factory.createWordFrag("word");
-        Fragment fragment3 = factory.createWordFrag("alphabet");
+        Fragment fragment = factory.createFragment("display");
+        Fragment fragment2 = factory.createFragment("word");
+        Fragment fragment3 = factory.createFragment("alphabet");
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.display, fragment)
                 .add(R.id.wordDisplay, fragment2)
@@ -96,7 +94,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     @Override
     public void startGame() {
         this.logic.start_new_game();
-        Fragment fragment3 = factory.createWordFrag("alphabet");
+        Fragment fragment3 = factory.createFragment("alphabet");
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.alphabet_display, fragment3)
                 .commit();

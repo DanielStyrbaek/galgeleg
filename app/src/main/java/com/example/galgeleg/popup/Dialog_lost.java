@@ -19,6 +19,7 @@ import com.example.galgeleg.R;
 
 public class Dialog_lost extends DialogFragment {
 
+    private static final String TAG = "Dialog_lost";
     View root;
     IGame_Activity game_activity;
     TextView txtView;

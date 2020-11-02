@@ -1,5 +1,8 @@
 package com.example.galgeleg.factories;
 
+import android.os.Bundle;
+
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.example.galgeleg.Alphabet_Frag;
@@ -16,7 +19,7 @@ public class FragmentFactory {
     }
 
 
-    public Fragment createWordFrag(String type) {
+    public Fragment createFragment(String type) {
 
         if (type == "word") {
             Word_Frag fragment = new Word_Frag();
@@ -39,14 +42,34 @@ public class FragmentFactory {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args); */
             return fragment;
-        } else if (type == "won") {
-            Dialog_won fragment = new Dialog_won();
-        } else if (type == "lost") {
-            Dialog_lost fragment = new Dialog_lost();
         }
 
 
         return null;
+    }
+
+    public DialogFragment createDialog(String type, int score) {
+        switch (type) {
+            case "won":
+
+                Dialog_won dialogWon = new Dialog_won();
+                dialogWon.setCancelable(false);
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("score", score);
+                dialogWon.setArguments(bundle);
+                return dialogWon;
+
+            case "lost":
+                Dialog_lost dialog = new Dialog_lost();
+                dialog.setCancelable(false);
+                return dialog;
+
+            default:
+                return null;
+
+        }
+
     }
 
 }

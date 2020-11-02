@@ -31,7 +31,7 @@
             android:gravity="center"
             android:text="Din score var :"
             android:textColor="#000"
-            android:id="@+id/input"/>
+            android:id="@+id/w_score"/>
 
         <Button
             android:layout_width="wrap_content"

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.galgeleg.IGame_Activity;
 import com.example.galgeleg.R;
@@ -23,6 +24,7 @@ public class Dialog_won extends DialogFragment {
 
     View root;
     IGame_Activity game_activity;
+    TextView txtV;
 
     Button btnReplay, btnMenu;
 
@@ -35,11 +37,19 @@ public class Dialog_won extends DialogFragment {
 
         btnReplay = root.findViewById(R.id.action_play_again);
         btnMenu = root.findViewById(R.id.action_menu);
+        txtV = root.findViewById(R.id.w_score);
+
+        int score = getArguments().getInt("score");
+
+        txtV.setText("Din score var :" + score);
+
 
         btnReplay.setOnClickListener(v -> {
             game_activity.startGame();
             dismiss();
         });
+
+
 
         btnMenu.setOnClickListener(v -> {
             game_activity.handleGameOver();
