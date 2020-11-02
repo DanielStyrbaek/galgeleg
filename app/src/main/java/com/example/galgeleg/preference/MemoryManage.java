@@ -31,9 +31,12 @@ public class MemoryManage {
 
     public SharedPreferences.Editor mEditor;
 
+    Gson gson;
+
     public MemoryManage(Context context) {
         this.memory = PreferenceManager.getDefaultSharedPreferences(context);
         this.mEditor = memory.edit();
+        this.gson = new Gson();
 
     }
 
@@ -42,8 +45,23 @@ public class MemoryManage {
         Gson gson = new Gson();
 
         String json = gson.toJson(score);
-        String key = String.format("%s", name);
+        System.out.println(String.format("test %s", name));
+        String key =  name;
         mEditor.putString(key, json);
+        mEditor.commit();
+    }
+
+    public Score getScore(String key) {
+
+        String json = memory.getString(key, "");
+
+        System.out.println("test3 " + json);
+        Score obj = gson.fromJson(json, Score.class);
+
+        System.out.println("test1" +obj.getName());
+
+        return obj;
+
     }
 
 
@@ -55,7 +73,7 @@ public class MemoryManage {
         ArrayList<Score> allScores = new ArrayList<>();
         Gson gson = new Gson();
         for (Object e: jsonArray) {
-            Score o = gson.fromJson((JsonElement) e, Score.class);
+            Score o = gson.fromJson((String) e, Score.class);
             allScores.add(o);
         }
 

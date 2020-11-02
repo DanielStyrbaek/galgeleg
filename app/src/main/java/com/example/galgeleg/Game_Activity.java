@@ -14,6 +14,7 @@ import com.example.galgeleg.observers.IObservable;
 import com.example.galgeleg.observers.IObserver;
 import com.example.galgeleg.popup.Dialog_lost;
 import com.example.galgeleg.popup.Dialog_won;
+import com.example.galgeleg.preference.MemoryManage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     FragmentFactory factory;
     Game_Logic logic;
     WordDB wordDB;
+    MemoryManage memory;
     List<IObserver> observers = new ArrayList<IObserver>();
-    //char[] alphabet = {'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'Å', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Æ', 'Ø', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'};
 
 
     @Override
@@ -66,7 +67,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     private void init() {
         factory = new FragmentFactory();
         wordDB = new WordDB();
-        logic = new Game_Logic(this, wordDB);
+        logic = new Game_Logic(this, wordDB, this);
         logic.start_new_game();
 
 

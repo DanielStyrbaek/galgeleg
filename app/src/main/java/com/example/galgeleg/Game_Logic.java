@@ -1,5 +1,8 @@
 package com.example.galgeleg;
 
+import android.content.Context;
+
+import com.example.galgeleg.preference.MemoryManage;
 import com.example.galgeleg.state.IGameState;
 import com.example.galgeleg.state.state_game_lost;
 import com.example.galgeleg.state.state_game_running;
@@ -16,6 +19,7 @@ public class Game_Logic {
     String correctLetters = " ";
     int nrOfTries = 6;
     WordDB wordDB;
+    MemoryManage memory;
 
 
 
@@ -23,10 +27,12 @@ public class Game_Logic {
 
 
 
-    public Game_Logic(IGame_Activity activity, WordDB wordDB) {
+    public Game_Logic(IGame_Activity activity, WordDB wordDB, Context context) {
         this.state = new state_initial(this);
         this.activity = activity;
         this.wordDB = wordDB;
+        memory = new MemoryManage(context);
+
     }
 
     public void change_state(IGameState state) {
