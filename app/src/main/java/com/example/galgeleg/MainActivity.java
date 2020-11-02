@@ -17,7 +17,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button startSpil;
+    Button startSpil, highScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +25,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         startSpil = findViewById(R.id.start_game);
+        highScore = findViewById(R.id.high_score_akt);
+
 
         startSpil.setOnClickListener(v -> {
             Intent i = new Intent(this, Game_Activity.class);
+            startActivity(i);
+        });
+
+        highScore.setOnClickListener(v -> {
+            Intent i = new Intent(this, Highscore_activity.class);
             startActivity(i);
         });
     }

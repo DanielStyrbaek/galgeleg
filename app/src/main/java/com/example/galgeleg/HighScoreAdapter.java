@@ -13,13 +13,16 @@ import com.example.galgeleg.preference.Score;
 
 import java.util.ArrayList;
 
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
+public class HighScoreAdapter extends RecyclerView.Adapter<HighScoreAdapter.ViewHolder> {
     private static final String TAG = "RecycleViewAdapter";
 
-    private ArrayList<Score> scores = new ArrayList<>();
+    private ArrayList<Score> Scores;
 
-    public RecycleViewAdapter(Context context, ArrayList<Score> scores) {
-        scores = scores;
+    public HighScoreAdapter(Context context, ArrayList<Score> scores) {
+        Scores = scores;
+
+        //TODO:
+        // Scores.sort() ??
     }
 
     @NonNull
@@ -33,25 +36,33 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        
+        Score currentScore = Scores.get(position);
+
+
+        holder.name.setText(currentScore.getName());
+        holder.word.setText(currentScore.getWord());
+        holder.score.setText(String.valueOf(currentScore.computeScore()));
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return Scores.size();
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView name;
-        TextView word;
-        TextView score;
+        public TextView name;
+        public TextView word;
+        public TextView score;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            name = itemView.findViewById(R.id.high_name);
+            word = itemView.findViewById(R.id.high_word);
+            score = itemView.findViewById(R.id.high_score);
         }
     }
 

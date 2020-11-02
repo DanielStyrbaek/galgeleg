@@ -2,11 +2,20 @@ package com.example.galgeleg.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
-import com.google.gson.Gson;
+import androidx.annotation.RequiresApi;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MemoryManage {
 
@@ -37,10 +46,22 @@ public class MemoryManage {
         mEditor.putString(key, json);
     }
 
-    public Map<String, ?> getAll() {
+
+    public ArrayList getAll() {
+
         Map<String, ?> all = memory.getAll();
 
-        return all;
+        Object[] jsonArray = all.values().toArray();
+        ArrayList<Score> allScores = new ArrayList<>();
+        Gson gson = new Gson();
+        for (Object e: jsonArray) {
+            Score o = gson.fromJson((JsonElement) e, Score.class);
+            allScores.add(o);
+        }
+
+        Collections.sort(allScores);
+
+        return allScores;
     }
 
 
