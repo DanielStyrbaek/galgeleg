@@ -51,7 +51,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     }
 
     @Override
-    public void gameOver(boolean state) {
+    public void gameOver(boolean state, int score) {
         if(state) {
             Dialog_won dialog = new Dialog_won();
             dialog.setCancelable(false);
@@ -67,7 +67,8 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     private void init() {
         factory = new FragmentFactory();
         wordDB = new WordDB();
-        logic = new Game_Logic(this, wordDB, this);
+        String user = getIntent().getStringExtra("name");
+        logic = new Game_Logic(this, wordDB, this, user);
         logic.start_new_game();
 
 
@@ -87,7 +88,6 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     }
 
     public void guess (String letter) {
-        System.out.println("test" + letter);
         this.logic.guess_letter(letter);
 
         Notify();
@@ -106,6 +106,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
 
     @Override
     public void handleGameOver() {
+        this.logic.handleEndGame();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

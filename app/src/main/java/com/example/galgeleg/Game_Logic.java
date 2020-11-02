@@ -3,6 +3,7 @@ package com.example.galgeleg;
 import android.content.Context;
 
 import com.example.galgeleg.preference.MemoryManage;
+import com.example.galgeleg.preference.Score;
 import com.example.galgeleg.state.IGameState;
 import com.example.galgeleg.state.state_game_lost;
 import com.example.galgeleg.state.state_game_running;
@@ -20,17 +21,26 @@ public class Game_Logic {
     int nrOfTries = 6;
     WordDB wordDB;
     MemoryManage memory;
+    String user;
 
 
 
     String word;
 
+    public MemoryManage getMemory() {
+        return memory;
+    }
 
+    public String getUser() {
+        return user;
+    }
 
-    public Game_Logic(IGame_Activity activity, WordDB wordDB, Context context) {
+    public Game_Logic(IGame_Activity activity, WordDB wordDB, Context context, String user) {
         this.state = new state_initial(this);
         this.activity = activity;
         this.wordDB = wordDB;
+        this.user = user;
+        System.out.println("test " + user);
         memory = new MemoryManage(context);
 
     }
@@ -39,11 +49,13 @@ public class Game_Logic {
         this.state = state;
 
         if (this.state instanceof state_game_won) {
-            this.activity.gameOver(true);
+            Score score = new Score(user, word, nrOfTries);
+            memory.saveScore(score);
+            this.activity.gameOver(true, score.getScore());
         }
 
         if (this.state instanceof state_game_lost) {
-            this.activity.gameOver(false);
+            this.activity.gameOver(false, 0);
         }
     }
 

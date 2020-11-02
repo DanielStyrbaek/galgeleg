@@ -3,6 +3,8 @@ package com.example.galgeleg;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.galgeleg.popup.Dialog_lost;
+import com.example.galgeleg.popup.Dialog_startSpil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -29,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         startSpil.setOnClickListener(v -> {
-            Intent i = new Intent(this, Game_Activity.class);
-            startActivity(i);
+            Dialog_startSpil dialog = new Dialog_startSpil();
+            dialog.setCancelable(false);
+            dialog.show(getSupportFragmentManager(), "Dialog_start");
         });
 
         highScore.setOnClickListener(v -> {

@@ -2,6 +2,7 @@ package com.example.galgeleg.state;
 
 import com.example.galgeleg.Game_Logic;
 import com.example.galgeleg.WordDB;
+import com.example.galgeleg.preference.MemoryManage;
 
 import java.util.ArrayList;
 import java.util.Random;

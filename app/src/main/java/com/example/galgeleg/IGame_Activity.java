@@ -6,7 +6,7 @@ public interface IGame_Activity {
 
     void inflateFragment(String fragmentTag);
 
-    void gameOver(boolean state);
+    void gameOver(boolean state, int score);
 
     void guess(String letter);
 

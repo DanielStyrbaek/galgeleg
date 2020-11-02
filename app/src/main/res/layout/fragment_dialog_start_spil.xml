@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".popup.Dialog_startSpil">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hvem_spiller"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="#000"
+        android:id="@+id/heading"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/enter_name"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/heading"
+            android:hint="@string/enter_your_name"
+            />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enter_name"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:background="@null"
+        android:gravity="center"
+        android:text="@string/vaelg_ordliste"
+        android:textColor="#000"
+        android:id="@+id/input"/>
+
+        <Spinner
+            android:id="@+id/choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/input"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:layout_gravity="center"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_spil"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:textColor="#33bbff"
+        android:id="@+id/s_play_game"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tilbage"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp"
+        android:textColor="#33bbff"
+        android:id="@+id/s_back"/>
+
+</RelativeLayout>
+</RelativeLayout>

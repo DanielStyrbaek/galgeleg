@@ -40,13 +40,11 @@ public class MemoryManage {
 
     }
 
-    public void saveScore(String name, String word, int tries) {
-        Score score = new Score(name, word, tries);
+    public void saveScore(Score score) {
         Gson gson = new Gson();
 
         String json = gson.toJson(score);
-        System.out.println(String.format("test %s", name));
-        String key =  name;
+        String key =  score.getName();
         mEditor.putString(key, json);
         mEditor.commit();
     }
