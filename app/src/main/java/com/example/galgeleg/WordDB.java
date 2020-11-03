@@ -10,6 +10,8 @@ import java.util.HashSet;
 
 public class WordDB {
 
+    /* DENNE KLASSE ER TAGET FRA DET UDLEVEREDE GALGELOGIK - TAK TIL JACOB NORDFALK */
+
     public ArrayList<String> wordDB = new ArrayList<>();
 
     public void setWordDB(int choice) throws Exception {
@@ -34,7 +36,7 @@ public class WordDB {
         }
     }
 
-    public void standartOrd(){
+    private void standartOrd(){
         wordDB.add("bil");
         wordDB.add("computer");
         wordDB.add("programmering");
@@ -46,7 +48,7 @@ public class WordDB {
         wordDB.add("tyve");
     }
 
-    public void hentOrdFraRegneark(String sværhedsgrader) throws Exception {
+    private void hentOrdFraRegneark(String sværhedsgrader) throws Exception {
         String id = "1RnwU9KATJB94Rhr7nurvjxfg09wAHMZPYB3uySBPO6M";
 
         System.out.println("Henter data som kommasepareret CSV fra regnearket https://docs.google.com/spreadsheets/d/"+id+"/edit?usp=sharing");
@@ -74,7 +76,7 @@ public class WordDB {
         return wordDB;
     }
 
-    public void hentOrdFraDr() throws Exception {
+    private void hentOrdFraDr() throws Exception {
         String data = hentUrl("https://dr.dk");
         //System.out.println("data = " + data);
 
@@ -98,7 +100,7 @@ public class WordDB {
         System.out.println("muligeOrd = " + wordDB);
     }
 
-    public static String hentUrl(String url) throws IOException {
+    private static String hentUrl(String url) throws IOException {
         System.out.println("Henter data fra " + url);
         BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
         StringBuilder sb = new StringBuilder();

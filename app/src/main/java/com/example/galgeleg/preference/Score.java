@@ -14,7 +14,7 @@ public class Score implements Comparable {
         this.score = computeScore();
     }
 
-    public int computeScore() {
+    private int computeScore() {
         if(triesLeft != 0) {
             return this.word.length() * this.triesLeft;
         }

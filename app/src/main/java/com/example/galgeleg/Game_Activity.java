@@ -50,16 +50,6 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
 
     }
 
-
-
-    @Override
-    public void inflateFragment(String fragmentTag) {
-        factory.createFragment(fragmentTag);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
     @Override
     public void gameOver(boolean state, int score) {
         if(state) {

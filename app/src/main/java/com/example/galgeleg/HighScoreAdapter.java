@@ -41,7 +41,7 @@ public class HighScoreAdapter extends RecyclerView.Adapter<HighScoreAdapter.View
 
         holder.name.setText(currentScore.getName());
         holder.word.setText(currentScore.getWord());
-        holder.score.setText(String.valueOf(currentScore.computeScore()));
+        holder.score.setText(String.valueOf(currentScore.getScore()));
 
     }
 
