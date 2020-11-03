@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import com.example.galgeleg.IGame_Activity;
 import com.example.galgeleg.R;
 import com.example.galgeleg.observers.IObserver;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 
 public class Display_Frag extends Fragment implements IObserver {
     View root;
@@ -24,6 +28,9 @@ public class Display_Frag extends Fragment implements IObserver {
     IGame_Activity game_activity;
     ImageView imgView;
     IObservable observe_game;
+
+    Executor bgThread = Executors.newSingleThreadExecutor();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,10 +60,17 @@ public class Display_Frag extends Fragment implements IObserver {
     }
 
     @Override
-    public void update() {
+    public void update(Handler UIthread) {
 
-        nrOfTries = observe_game.getNumberOfTries();
-        resImg = getResources().getIdentifier("hangman" + nrOfTries, "drawable", getActivity().getPackageName());
-        imgView.setImageResource(resImg);
+        bgThread.execute(()-> {
+            nrOfTries = observe_game.getNumberOfTries();
+            resImg = getResources().getIdentifier("hangman" + nrOfTries, "drawable", getActivity().getPackageName());
+
+            UIthread.post(()-> {
+                imgView.setImageResource(resImg);
+
+            });
+        });
     }
+
 }

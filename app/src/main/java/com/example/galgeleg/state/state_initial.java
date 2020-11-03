@@ -23,7 +23,7 @@ public class state_initial implements IGameState {
     public void start_new_game() {
         WordDB wordDB = this.game.getWordDB();
         try {
-            wordDB.standartOrd();
+            wordDB.setWordDB(this.game.getDbToUse());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,0 +1,234 @@
+@startuml
+
+title __GALGELEG.APP's Class Diagram__\n
+
+  namespace com.example.galgeleg {
+    class com.example.galgeleg.Alphabet_Frag {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    class com.example.galgeleg.BuildConfig {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    class com.example.galgeleg.Game_Activity {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    class com.example.galgeleg.Game_Logic {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    class com.example.galgeleg.HighScoreAdapter {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    class com.example.galgeleg.Highscore_activity {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    interface com.example.galgeleg.IGame_Activity {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    class com.example.galgeleg.MainActivity {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    class com.example.galgeleg.WordDB {
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace factories {
+      class com.example.galgeleg.factories.ButtonFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace factories {
+      class com.example.galgeleg.factories.FragmentFactory {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace observers {
+      class com.example.galgeleg.observers.Display_Frag {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace observers {
+      interface com.example.galgeleg.observers.IObservable {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace observers {
+      interface com.example.galgeleg.observers.IObserver {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace observers {
+      class com.example.galgeleg.observers.Word_Frag {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace popup {
+      class com.example.galgeleg.popup.Dialog_lost {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace popup {
+      class com.example.galgeleg.popup.Dialog_startSpil {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace popup {
+      class com.example.galgeleg.popup.Dialog_won {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace preference {
+      class com.example.galgeleg.preference.MemoryManage {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace preference {
+      class com.example.galgeleg.preference.Score {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace state {
+      interface com.example.galgeleg.state.IGameState {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace state {
+      class com.example.galgeleg.state.state_game_lost {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace state {
+      class com.example.galgeleg.state.state_game_running {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace state {
+      class com.example.galgeleg.state.state_game_won {
+      }
+    }
+  }
+  
+
+  namespace com.example.galgeleg {
+    namespace state {
+      class com.example.galgeleg.state.state_initial {
+      }
+    }
+  }
+  
+
+  com.example.galgeleg.Alphabet_Frag -up-|> androidx.fragment.app.Fragment
+  com.example.galgeleg.Alphabet_Frag o-- com.example.galgeleg.factories.ButtonFactory : btnFactory
+  com.example.galgeleg.Alphabet_Frag o-- com.example.galgeleg.IGame_Activity : game_activity
+  com.example.galgeleg.Game_Activity .up.|> com.example.galgeleg.IGame_Activity
+  com.example.galgeleg.Game_Activity .up.|> com.example.galgeleg.observers.IObservable
+  com.example.galgeleg.Game_Activity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.galgeleg.Game_Activity o-- com.example.galgeleg.factories.FragmentFactory : factory
+  com.example.galgeleg.Game_Activity o-- com.example.galgeleg.Game_Logic : logic
+  com.example.galgeleg.Game_Activity o-- com.example.galgeleg.WordDB : wordDB
+  com.example.galgeleg.Game_Logic o-- com.example.galgeleg.IGame_Activity : activity
+  com.example.galgeleg.Game_Logic o-- com.example.galgeleg.preference.MemoryManage : memory
+  com.example.galgeleg.Game_Logic o-- com.example.galgeleg.state.IGameState : state
+  com.example.galgeleg.Game_Logic o-- com.example.galgeleg.WordDB : wordDB
+  com.example.galgeleg.HighScoreAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.galgeleg.Highscore_activity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.galgeleg.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.galgeleg.observers.Display_Frag .up.|> com.example.galgeleg.observers.IObserver
+  com.example.galgeleg.observers.Display_Frag -up-|> androidx.fragment.app.Fragment
+  com.example.galgeleg.observers.Display_Frag o-- com.example.galgeleg.IGame_Activity : game_activity
+  com.example.galgeleg.observers.Display_Frag o-- com.example.galgeleg.observers.IObservable : observe_game
+  com.example.galgeleg.observers.Word_Frag .up.|> com.example.galgeleg.observers.IObserver
+  com.example.galgeleg.observers.Word_Frag -up-|> androidx.fragment.app.Fragment
+  com.example.galgeleg.observers.Word_Frag o-- com.example.galgeleg.IGame_Activity : game_activity
+  com.example.galgeleg.observers.Word_Frag o-- com.example.galgeleg.observers.IObservable : observe_game
+  com.example.galgeleg.popup.Dialog_lost -up-|> androidx.fragment.app.DialogFragment
+  com.example.galgeleg.popup.Dialog_lost o-- com.example.galgeleg.IGame_Activity : game_activity
+  com.example.galgeleg.popup.Dialog_startSpil -up-|> androidx.fragment.app.DialogFragment
+  com.example.galgeleg.popup.Dialog_won -up-|> androidx.fragment.app.DialogFragment
+  com.example.galgeleg.popup.Dialog_won o-- com.example.galgeleg.IGame_Activity : game_activity
+  com.example.galgeleg.preference.Score .up.|> java.lang.Comparable
+  com.example.galgeleg.state.state_game_lost .up.|> com.example.galgeleg.state.IGameState
+  com.example.galgeleg.state.state_game_lost o-- com.example.galgeleg.Game_Logic : game
+  com.example.galgeleg.state.state_game_running .up.|> com.example.galgeleg.state.IGameState
+  com.example.galgeleg.state.state_game_running o-- com.example.galgeleg.Game_Logic : game
+  com.example.galgeleg.state.state_game_won .up.|> com.example.galgeleg.state.IGameState
+  com.example.galgeleg.state.state_game_won o-- com.example.galgeleg.Game_Logic : game
+  com.example.galgeleg.state.state_initial .up.|> com.example.galgeleg.state.IGameState
+  com.example.galgeleg.state.state_initial o-- com.example.galgeleg.Game_Logic : game
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

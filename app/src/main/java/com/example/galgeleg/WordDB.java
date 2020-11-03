@@ -12,6 +12,28 @@ public class WordDB {
 
     public ArrayList<String> wordDB = new ArrayList<>();
 
+    public void setWordDB(int choice) throws Exception {
+        switch (choice) {
+            case 0:
+                standartOrd();
+                break;
+            case 1:
+                hentOrdFraDr();
+                break;
+            case 2:
+                hentOrdFraRegneark("1");
+                break;
+            case 3:
+                hentOrdFraRegneark("2");
+                break;
+            case 4:
+                hentOrdFraRegneark("3");
+                break;
+            default:
+                break;
+        }
+    }
+
     public void standartOrd(){
         wordDB.add("bil");
         wordDB.add("computer");

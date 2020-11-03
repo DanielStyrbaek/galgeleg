@@ -4,17 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.galgeleg.Game_Activity;
-import com.example.galgeleg.Game_Logic;
-import com.example.galgeleg.IGame_Activity;
 import com.example.galgeleg.R;
 
 public class Dialog_startSpil extends DialogFragment {
@@ -23,6 +22,8 @@ public class Dialog_startSpil extends DialogFragment {
     View root;
 
     Button btnBack, btnStartGame;
+
+    Spinner dropDown;
 
     EditText edtTxt;
 
@@ -35,8 +36,13 @@ public class Dialog_startSpil extends DialogFragment {
 
         btnBack = root.findViewById(R.id.s_back);
         btnStartGame = root.findViewById(R.id.s_play_game);
-
+        dropDown = root.findViewById(R.id.s_spinner);
         edtTxt = root.findViewById(R.id.enter_name);
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.word_choices, android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropDown.setAdapter(adapter);
 
         btnBack.setOnClickListener(v -> {
             edtTxt.setText("");
@@ -46,6 +52,7 @@ public class Dialog_startSpil extends DialogFragment {
         btnStartGame.setOnClickListener(v -> {
             Intent i = new Intent(getActivity(), Game_Activity.class);
             i.putExtra("name", edtTxt.getText().toString());
+            i.putExtra("choice", dropDown.getSelectedItemPosition());
             startActivity(i);
         });
 

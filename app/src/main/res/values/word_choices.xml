@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="word_choices">
+        <item> Standard Ordliste</item>
+        <item>Fra DR</item>
+        <item>Regneark let</item>
+        <item>Regneark medium</item>
+        <item>Regneark svær</item>
+    </string-array>
+</resources>

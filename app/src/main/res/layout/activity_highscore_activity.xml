@@ -6,7 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".Highscore_activity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lin_lay"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:text="@string/navn"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="25sp"
+            android:text="@string/ord"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:text="@string/score"
+            />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/lin_lay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/highscore_list"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Galgeleg</string>
+    <string name="app_name">s143861 Daniel Styrbæk-Petersen</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -21,4 +21,7 @@
     <string name="vaelg_ordliste">Vælg ordliste</string>
     <string name="tilbage">TILBAGE</string>
     <string name="start_spil">Start Spil</string>
+    <string name="navn">Navn</string>
+    <string name="ord">ORD</string>
+    <string name="score">Score</string>
 </resources>

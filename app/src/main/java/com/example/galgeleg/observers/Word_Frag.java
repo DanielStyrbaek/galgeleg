@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 
 import com.example.galgeleg.IGame_Activity;
 import com.example.galgeleg.R;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 
 public class Word_Frag extends Fragment implements IObserver{
@@ -22,6 +26,9 @@ public class Word_Frag extends Fragment implements IObserver{
     IObservable observe_game;
 
     TextView textView;
+
+    Executor bgThread = Executors.newSingleThreadExecutor();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,8 +56,14 @@ public class Word_Frag extends Fragment implements IObserver{
     }
 
     @Override
-    public void update() {
-        String visible_text = game_activity.getVisibleText();
-        textView.setText(visible_text);
+    public void update(Handler UIthread) {
+
+        bgThread.execute(()-> {
+            String visible_text = game_activity.getVisibleText();
+            UIthread.post(() -> {
+                textView.setText(visible_text);
+            });
+
+        });
     }
 }

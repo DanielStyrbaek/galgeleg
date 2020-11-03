@@ -14,6 +14,20 @@
 
     </FrameLayout>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:id="@+id/progres_bar"
+        android:layout_height="wrap_content"
+        android:minWidth="50dp"
+        android:minHeight="50dp"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/alphabet_display"
+        app:layout_constraintEnd_toEndOf="@+id/wordDisplay"
+        app:layout_constraintStart_toStartOf="@+id/wordDisplay"
+        app:layout_constraintTop_toTopOf="@+id/display" />
+
     <FrameLayout
         android:id="@+id/wordDisplay"
         android:layout_width="match_parent"

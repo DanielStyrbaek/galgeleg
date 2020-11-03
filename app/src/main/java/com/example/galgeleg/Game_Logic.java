@@ -22,8 +22,7 @@ public class Game_Logic {
     WordDB wordDB;
     MemoryManage memory;
     String user;
-
-
+    int dbToUse;
 
     String word;
 
@@ -35,14 +34,20 @@ public class Game_Logic {
         return user;
     }
 
-    public Game_Logic(IGame_Activity activity, WordDB wordDB, Context context, String user) {
+    public Game_Logic(IGame_Activity activity, WordDB wordDB, Context context, String user, int choice) {
         this.state = new state_initial(this);
         this.activity = activity;
         this.wordDB = wordDB;
         this.user = user;
+        this.dbToUse = choice;
         System.out.println("test " + user);
         memory = new MemoryManage(context);
 
+    }
+
+
+    public int getDbToUse() {
+        return dbToUse;
     }
 
     public void change_state(IGameState state) {

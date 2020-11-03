@@ -8,7 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.galgeleg.factories.FragmentFactory;
 import com.example.galgeleg.observers.IObservable;
@@ -19,23 +23,29 @@ import com.example.galgeleg.preference.MemoryManage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class Game_Activity extends AppCompatActivity implements IGame_Activity, IObservable {
 
     FragmentFactory factory;
     Game_Logic logic;
     WordDB wordDB;
+    ProgressBar progressBar;
     List<IObserver> observers = new ArrayList<IObserver>();
 
+
+    Executor bgThread = Executors.newSingleThreadExecutor();
+    Handler uithread = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_);
 
+        progressBar = findViewById(R.id.progres_bar);
+
         init();
-
-
 
 
     }
@@ -63,14 +73,28 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     }
 
     private void init() {
+        progressBar.setVisibility(View.VISIBLE);
         factory = new FragmentFactory();
         wordDB = new WordDB();
         String user = getIntent().getStringExtra("name");
-        logic = new Game_Logic(this, wordDB, this, user);
-        logic.start_new_game();
+        logic = new Game_Logic(this, wordDB, this, user, getIntent().getIntExtra("choice", 0));
+
+        bgThread.execute(()-> {
+            try {
+                logic.start_new_game();
+                uithread.post(()-> {
+                    Notify();
+                    progressBar.setVisibility(View.INVISIBLE);
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                uithread.post(()-> {
+
+                });
+            }
 
 
-        //ADD OBSERVERS
+        });
 
 
         Fragment fragment = factory.createFragment("display");
@@ -133,7 +157,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     @Override
     public void Notify() {
         for (IObserver observer : observers) {
-            observer.update();
+            observer.update(uithread);
         }
 
     }
