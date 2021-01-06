@@ -1,6 +1,7 @@
 package com.example.galgeleg.popup;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.nfc.Tag;
 import android.os.Bundle;
 
@@ -17,6 +18,10 @@ import android.widget.TextView;
 import com.example.galgeleg.IGame_Activity;
 import com.example.galgeleg.R;
 
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
+
 
 public class Dialog_won extends DialogFragment {
 
@@ -27,6 +32,9 @@ public class Dialog_won extends DialogFragment {
     TextView txtV;
 
     Button btnReplay, btnMenu;
+    KonfettiView konfettiView;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +50,13 @@ public class Dialog_won extends DialogFragment {
         int score = getArguments().getInt("score");
 
         txtV.setText("Din score var :" + score);
+
+        konfettiView = root.findViewById(R.id.viewKonfetti);
+
+        init();
+
+
+
 
 
         btnReplay.setOnClickListener(v -> {
@@ -59,6 +74,19 @@ public class Dialog_won extends DialogFragment {
 
         return root;
 
+    }
+
+    private void init() {
+        konfettiView.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                .addSizes(new Size(12, 5f))
+                .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
+                .streamFor(300, 5000L);
     }
 
 
