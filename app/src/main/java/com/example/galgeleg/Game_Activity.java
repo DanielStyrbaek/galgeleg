@@ -75,6 +75,14 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
                 uithread.post(()-> {
                     Notify();
                     progressBar.setVisibility(View.INVISIBLE);
+                    Fragment fragment = factory.createFragment("display");
+                    Fragment fragment2 = factory.createFragment("word");
+                    Fragment fragment3 = factory.createFragment("alphabet");
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.display, fragment)
+                            .add(R.id.wordDisplay, fragment2)
+                            .add(R.id.alphabet_display, fragment3)
+                            .commit();
                 });
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,14 +95,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
         });
 
 
-        Fragment fragment = factory.createFragment("display");
-        Fragment fragment2 = factory.createFragment("word");
-        Fragment fragment3 = factory.createFragment("alphabet");
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.display, fragment)
-                .add(R.id.wordDisplay, fragment2)
-                .add(R.id.alphabet_display, fragment3)
-                .commit();
+
 
 
     }

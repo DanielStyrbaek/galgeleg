@@ -25,4 +25,7 @@
     <string name="ord">ORD</string>
     <string name="score">Score</string>
     <string name="galgeleg">Velkommen til galgeleg</string>
+    <string name="splash_galge">GALGELEG</string>
+    <string name="splash_velkommen">VELKOMMEN</string>
+    <string name="splash_til">TIL</string>
 </resources>
