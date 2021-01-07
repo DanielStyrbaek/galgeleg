@@ -29,12 +29,15 @@
         app:layout_constraintStart_toStartOf="@+id/wordDisplay"
         app:layout_constraintTop_toTopOf="@+id/display" />
 
+
     <FrameLayout
         android:id="@+id/wordDisplay"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         app:layout_constraintBottom_toTopOf="@+id/alphabet_display"
-        app:layout_constraintTop_toBottomOf="@+id/display" />
+        app:layout_constraintTop_toBottomOf="@+id/display" >
+
+    </FrameLayout>
 
 
     <FrameLayout
@@ -43,6 +46,16 @@
         android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <TextView
+        android:id="@+id/read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INDLÆSER"
+        app:layout_constraintBottom_toBottomOf="@+id/alphabet_display"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/display"
+        app:layout_constraintVertical_bias="0.441" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.galgeleg.factories.FragmentFactory;
 import com.example.galgeleg.observers.IObservable;
@@ -32,6 +33,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
     Game_Logic logic;
     WordDB wordDB;
     ProgressBar progressBar;
+    TextView reading;
     List<IObserver> observers = new ArrayList<IObserver>();
 
 
@@ -44,6 +46,8 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
         setContentView(R.layout.activity_game_);
 
         progressBar = findViewById(R.id.progres_bar);
+        reading = findViewById(R.id.read);
+
 
         init();
 
@@ -75,6 +79,7 @@ public class Game_Activity extends AppCompatActivity implements IGame_Activity, 
                 uithread.post(()-> {
                     Notify();
                     progressBar.setVisibility(View.INVISIBLE);
+                    reading.setVisibility(View.INVISIBLE);
                     Fragment fragment = factory.createFragment("display");
                     Fragment fragment2 = factory.createFragment("word");
                     Fragment fragment3 = factory.createFragment("alphabet");
